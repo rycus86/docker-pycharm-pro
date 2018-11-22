@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   libfontconfig1 \
   && rm -rf /var/lib/apt/lists/*
 
-ARG pycharm_source=https://download.jetbrains.com/python/pycharm-professional-2018.2.5.tar.gz
-ARG pycharm_local_dir=.PyCharm2018.2
+ARG pycharm_source=https://download.jetbrains.com/python/pycharm-professional-2018.3.tar.gz
+ARG pycharm_local_dir=.PyCharm2018.3
 
 RUN mkdir /opt/pycharm
 WORKDIR /opt/pycharm
