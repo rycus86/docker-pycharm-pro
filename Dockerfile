@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   && rm -rf /var/lib/apt/lists/* \
   && useradd -ms /bin/bash developer
 
-ARG pycharm_source=https://download.jetbrains.com/python/pycharm-professional-2019.1.3.tar.gz
-ARG pycharm_local_dir=.PyCharm2019.1
+ARG pycharm_source=https://download.jetbrains.com/python/pycharm-professional-2019.2.tar.gz
+ARG pycharm_local_dir=.PyCharm2019.2
 
 WORKDIR /opt/pycharm
 
