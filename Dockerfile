@@ -8,7 +8,7 @@ ARG PYCHARM_BUILD=2019.3.2
 RUN apt-get update && apt-get install --no-install-recommends -y \
   python python-dev python-setuptools python-pip \
   python3 python3-dev python3-setuptools python3-pip \
-  gcc git openssh-client curl less \
+  gcc git openssh-client curl less unzip \
   libxtst-dev libxext-dev libxrender-dev libfreetype6-dev \
   libfontconfig1 libgtk2.0-0 libxslt1.1 libxxf86vm1 \
   && rm -rf /var/lib/apt/lists/* \
@@ -22,6 +22,11 @@ WORKDIR /opt/pycharm
 RUN curl -fsSL $pycharm_source -o /opt/pycharm/installer.tgz \
   && tar --strip-components=1 -xzf installer.tgz \
   && rm installer.tgz
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+  && unzip awscliv2.zip \ 
+  && rm awscliv2.zip \
+  && /opt/pycharm/aws/install
 
 USER developer
 ENV HOME /home/developer
