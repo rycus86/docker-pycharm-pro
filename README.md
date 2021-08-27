@@ -32,7 +32,7 @@ Docker Hub Page: https://hub.docker.com/r/rycus86/pycharm-pro/
 
 You'll still need a license to use the application!
 
-The IDE will have access to Python 2 and to Git.
+The IDE will have access to Python 3 and to Git.
 Project folders need to be mounted like `-v ~/Project:/home/developer/Project`.
 The actual name can be anything - I used something random to be able to start multiple instances if needed.
 
