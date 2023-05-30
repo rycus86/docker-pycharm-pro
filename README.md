@@ -8,25 +8,35 @@ docker run --rm \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   -v ~/.PyCharm:/home/developer/.PyCharm \
   -v ~/.PyCharm.java:/home/developer/.java \
-  -v ~/.PyCharm.py3:/usr/local/lib/python3.9 \
+  -v ~/.PyCharm.py3:/home/developer/.py3.libs \
   -v ~/.PyCharm.share:/home/developer/.local/share/JetBrains \
   -v ~/Project:/home/developer/Project \
   --name pycharm-$(head -c 4 /dev/urandom | xxd -p)-$(date +'%Y%m%d-%H%M%S') \
-rycus86/pycharm-pro:latest
-```
-#### For Windows hosts (simplified):
-```
-docker.exe run --rm -d ^
-        --name pycharm-pro ^
-        -e DISPLAY=YOUR_IP_ADDRESS:0.0 ^
-        -v %TEMP%\.X11-unix:/tmp/.X11-unix ^
-        -v %USERPROFILE%\pycharm-docker:/home/developer ^
-        -v %USERPROFILE%\pycharm-docker\python3.9:/usr/local/lib/python3.9 ^
-        rycus86/pycharm-pro:latest
-
+rycus86/pycharm-pro:${IDE_VERSION}
 ```
 
 Docker Hub Page: https://hub.docker.com/r/rycus86/pycharm-pro/
+([available versions](https://hub.docker.com/r/rycus86/pycharm-pro/tags))
+
+### OS X instructions
+
+1. Install XQuartz from https://www.xquartz.org/releases/
+2. Configure `Allow connections from network clients` in the settings
+    - Restart the system (needed only once when this is enabled)
+3. Run `xhost +localhost` in a terminal to allow connecting to X11 over the TCP socket
+4. Use `-e DISPLAY=host.docker.internal:0` for passing the `${DISPLAY}` environment
+
+#### For Windows hosts (simplified):
+
+```
+docker.exe run --rm -d ^
+     --name pycharm-pro ^
+     -e DISPLAY=YOUR_IP_ADDRESS:0.0 ^
+     -v %TEMP%\.X11-unix:/tmp/.X11-unix ^
+     -v %USERPROFILE%\pycharm-docker:/home/developer ^
+     -v %USERPROFILE%\pycharm-docker\python-libs:/home/developer/.py3.libs ^
+     rycus86/pycharm-pro:%IDE_VERSION%
+```
 
 ### Notes
 
